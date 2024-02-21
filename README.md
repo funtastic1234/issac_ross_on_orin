@@ -71,3 +71,24 @@ After rebooting, use `df -h` again to ensure the RAM disk is automatically mount
 ## Conclusion
 
 You have now successfully set up a RAM disk on your Jetson device. This RAM disk can be used for operations requiring high-speed data access. Remember, the data on the RAM disk is temporary and will be cleared after a reboot or shutdown.
+
+
+# Jetson Orin Nano Swap File Configuration
+
+Enhance your Jetson Orin Nano's performance for memory-intensive tasks by setting up a swap file. This process involves allocating space for the swap file, setting correct permissions, marking it as swap space, enabling it for use, and ensuring it's recognized on system boot.
+
+## Steps:
+
+1. **Allocate Swap Space**
+   - `sudo fallocate -l 4G /var/swapfile`
+2. **Set Permissions**
+   - `sudo chmod 600 /var/swapfile`
+3. **Mark as Swap**
+   - `sudo mkswap /var/swapfile`
+4. **Enable Swap File**
+   - `sudo swapon /var/swapfile`
+5. **Auto-enable on Boot**
+   - Add `/var/swapfile swap swap defaults 0 0` to `/etc/fstab`
+
+Successful execution enhances your system's ability to handle demanding tasks by utilizing swap space.
+
